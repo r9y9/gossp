@@ -1,0 +1,16 @@
+language: go
+
+go:
+  - 1.2
+  - release
+  - tip
+
+before_install:
+  - git clone https://github.com/r9y9/SPTK.git && cd SPTK
+  - ./waf
+  - sudo ./waf install & cd ../
+
+install:
+  - go get github.com/mjibson/go-dsp/fft
+  - go get github.com/r9y9/go-dsp/wav
+  - go get -v ./...
