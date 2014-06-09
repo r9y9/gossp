@@ -1,9 +1,15 @@
-package timefreq
+// Package stft provides support for Short-Time Fourier Transform (STFT)
+// Analysis.
+package stft
 
 import (
 	"github.com/mjibson/go-dsp/fft"
 	"github.com/r9y9/gossp/window"
 )
+
+// Reference:
+// D. W. Griffin and J. S. Lim, "Signal estimation from modified short-time
+// Fourier transform," IEEE Trans. ASSP, vol.32, no.2, pp.236–243, Apr. 1984.
 
 // STFT represents Short Time Fourier Transform Analysis.
 type STFT struct {
@@ -12,8 +18,8 @@ type STFT struct {
 	Window     []float64 // window funtion
 }
 
-// NewSTFT returns a new STFT instance.
-func NewSTFT(frameShift, frameLen int) *STFT {
+// New returns a new STFT instance.
+func New(frameShift, frameLen int) *STFT {
 	s := &STFT{
 		FrameShift: frameShift,
 		FrameLen:   frameLen,
@@ -62,8 +68,6 @@ func (s *STFT) STFT(input []float64) [][]complex128 {
 
 // ISTFT performs invere STFT signal reconstruction and returns reconstructed
 // signal.
-// D. W. Griffin and J. S. Lim, "Signal estimation from modified short-time
-// Fourier transform," IEEE Trans. ASSP, vol.32, no.2, pp.236–243, Apr. 1984.
 func (s *STFT) ISTFT(spectrogram [][]complex128) []float64 {
 	frameLen := len(spectrogram[0])
 	numFrames := len(spectrogram)

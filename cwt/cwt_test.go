@@ -12,7 +12,7 @@ var (
 )
 
 func loadReal10kData() []float64 {
-	w, werr := io.ReadWav("../../test_files/nanami10k.wav")
+	w, werr := io.ReadWav("../test_files/nanami10k.wav")
 	if werr != nil {
 		log.Fatal(werr)
 	}

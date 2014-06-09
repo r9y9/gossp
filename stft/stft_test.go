@@ -1,4 +1,4 @@
-package timefreq
+package stft
 
 import (
 	"github.com/r9y9/gossp/io"

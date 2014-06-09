@@ -6,6 +6,11 @@ import (
 	"math"
 )
 
+// Reference:
+// Torrence, C. and G.P. Compo “A Practical Guide to Wavelet Analysis,
+// Bull. Am. Meteorol. Soc., 79, 61–78, 1998.
+// http://paos.colorado.edu/research/wavelets/bams_79_01_0061.pdf
+
 // FrequencyReper represents interface that has frequency representation.
 type FrequencyReper interface {
 	FrequencyRep(omega []float64, scale float64) []float64
