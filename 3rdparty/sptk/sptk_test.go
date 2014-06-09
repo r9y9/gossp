@@ -45,8 +45,10 @@ func TestMGCep(t *testing.T) {
 	gamma := 0.0
 	result := MGCepWithDefaultParameters(dummyInput, 25, 0.35, gamma)
 
-	for i, val := range result {
-		fmt.Println(i, val)
+	if false {
+		for i, val := range result {
+			fmt.Println(i, val)
+		}
 	}
 }
 

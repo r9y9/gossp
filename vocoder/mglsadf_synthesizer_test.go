@@ -5,7 +5,7 @@ import (
 	"github.com/r9y9/gossp/f0"
 	"github.com/r9y9/gossp/io"
 	"github.com/r9y9/gossp/mgcep"
-	"github.com/r9y9/gossp/timefreq"
+	"github.com/r9y9/gossp/stft"
 	"github.com/r9y9/gossp/window"
 	"log"
 	"testing"
@@ -35,7 +35,7 @@ func TestMGLSASynthesis(t *testing.T) {
 	f0Seq = f0.SWIPE(testData, 16000, frameShift, 60.0, 700.0)
 
 	// MGCep
-	s := &timefreq.STFT{
+	s := &stft.STFT{
 		FrameShift: frameShift,
 		FrameLen:   frameLen,
 	}
