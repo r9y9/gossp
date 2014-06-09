@@ -6,6 +6,7 @@ go:
   - tip
 
 install:
+  - export LD_LIBRARY_PATH="/usr/local/lib"
   - cd $HOME
   - git clone https://github.com/r9y9/SPTK.git && cd SPTK
   - ./waf configure && ./waf
