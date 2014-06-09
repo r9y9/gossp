@@ -12,7 +12,7 @@ Speech Signal Processing for Go
 For Linux or MacOS X platform:
 
      git clone https://github.com/r9y9/SPTK.git && cd SPTK
-     ./waf
+     ./waf configure && ./waf
      sudo ./waf install
 
 Note: Above procedure will install a bit modified version of SPTK by the author.
