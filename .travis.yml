@@ -5,14 +5,12 @@ go:
   - release
   - tip
 
-before_install:
+install:
   - cd $HOME
   - git clone https://github.com/r9y9/SPTK.git && cd SPTK
   - ./waf configure && ./waf
   - sudo ./waf install
   - cd $TRAVIS_BUILD_DIR
-
-install:
   - go get github.com/mjibson/go-dsp/fft
   - go get github.com/r9y9/go-dsp/wav
   - go get ./...
