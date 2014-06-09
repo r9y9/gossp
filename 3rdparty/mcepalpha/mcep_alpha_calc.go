@@ -36,6 +36,8 @@
 /*  The code slightly modified by Ryuichi Yamamoto, Feb.2 2014           */
 /*************************************************************************/
 
+// Package mcepalpha provides support for determination of all-pass constant
+// for mel-cepstrum analysis.
 package mcepalpha
 
 import (

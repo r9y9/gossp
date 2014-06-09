@@ -1,3 +1,4 @@
+// Package window provides window functions.
 package window
 
 import (
