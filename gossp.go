@@ -3,6 +3,7 @@ package gossp
 
 import (
 	"math"
+	"math/cmplx"
 )
 
 // DivideFrames returns overlapping divided frames.
