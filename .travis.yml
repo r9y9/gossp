@@ -7,7 +7,7 @@ go:
 
 before_install:
   - git clone https://github.com/r9y9/SPTK.git && cd SPTK
-  - ./waf
+  - ./waf configure && ./waf
   - sudo ./waf install & cd ../
 
 install:
