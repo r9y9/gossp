@@ -3,6 +3,8 @@
 
 Speech Signal Processing for Go
 
+http://godoc.org/github.com/r9y9/gossp
+
 # Getting Started
 
      go get github.com/r9y9/gossp/${package_name}
