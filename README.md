@@ -1,4 +1,4 @@
-# GOSSP - Speech Signal Processing for Go
+# GOSSP - Speech Signal Processing for Go  [![Build Status](https://travis-ci.org/r9y9/gossp.png?branch=dev)](https://travis-ci.org/r9y9/gossp)
 ------------------------------------------
 
 # Getting Started
