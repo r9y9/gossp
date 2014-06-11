@@ -19,7 +19,7 @@ For Linux or MacOS X platform:
 
 Note: Above procedure will install a bit modified version of SPTK.
 
-# LICENCE
+# LICENSE
 
 MIT
 
