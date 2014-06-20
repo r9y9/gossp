@@ -87,7 +87,9 @@ func (s *STFT) ISTFT(spectrogram [][]complex128) []float64 {
 
 	// Normalize by window
 	for n := range reconstructedSignal {
-		reconstructedSignal[n] /= windowSum[n]
+		if windowSum[n] > 1.0e-21 {
+			reconstructedSignal[n] /= windowSum[n]
+		}
 	}
 
 	return reconstructedSignal

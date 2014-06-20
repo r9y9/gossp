@@ -30,7 +30,7 @@ func TestConsistencyBetweenSTFTAndISTFT(t *testing.T) {
 		testData            = loadReal16kData()
 		testFrameLen        = []int{4096, 2048, 1024, 512}
 		testFrameShiftDenom = []int{2, 3, 4, 5, 6, 7, 8} // 50% overlap 75% ...
-		errTolerance        = 0.2
+		errTolerance        = 1.2
 	)
 
 	for _, frameLen := range testFrameLen {
@@ -44,6 +44,9 @@ func TestConsistencyBetweenSTFTAndISTFT(t *testing.T) {
 					Window:     win,
 				}
 				reconstructed := s.ISTFT(s.STFT(testData))
+				if containNAN(reconstructed) {
+					t.Errorf("NAN contained, want non NAN contained.")
+				}
 
 				err := absErr(reconstructed, testData)
 				if err > errTolerance {
@@ -52,6 +55,15 @@ func TestConsistencyBetweenSTFTAndISTFT(t *testing.T) {
 			}
 		}
 	}
+}
+
+func containNAN(a []float64) bool {
+	for _, val := range a {
+		if math.IsNaN(val) {
+			return true
+		}
+	}
+	return false
 }
 
 func absErr(a, b []float64) float64 {
