@@ -1,7 +1,7 @@
 # GOSSP [![Build Status](https://travis-ci.org/r9y9/gossp.png?branch=master)](https://travis-ci.org/r9y9/gossp)
 ------------------------------------------
 
-GOSSP is a Speech Signal Processing library for the Go language, which includes time-frequency analysis, fundamental frequency estimation, spectral envelope estimation and waveform generation filters.
+GOSSP is a Speech Signal Processing library for the Go language, which includes time-frequency analysis, fundamental frequency estimation, spectral envelope estimation and waveform generation filters, etc.
 
 ## Packages
 
