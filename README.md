@@ -80,9 +80,47 @@ func PrintMatrixAsGnuplotFormat(matrix [][]float64) {
 ~~~
 
 ### Waveform Reconstruction using Inverse Short-Time Fourier Transform
+![](http://r9y9.github.io/images/gossp_waveform.png)
 
 ~~~ go
-	reconstructed := s.ISTFT(s.STFT(data))
+package main
+
+import (
+	"flag"
+	"fmt"
+	"github.com/r9y9/gossp/io"
+	"github.com/r9y9/gossp/stft"
+	"github.com/r9y9/gossp/window"
+	"log"
+)
+
+func main() {
+	filename := flag.String("i", "input.wav", "Input filename")
+	flag.Parse()
+
+	w, werr := io.ReadWav(*filename)
+	if werr != nil {
+		log.Fatal(werr)
+	}
+	data := w.GetMonoData()
+
+	s := &stft.STFT{
+		FrameShift: int(float64(w.SampleRate) / 100.0), // 0.01 sec,
+		FrameLen:   2048,
+		Window:     window.CreateHanning(2048),
+	}
+
+	spectrogram := s.STFT(data)
+
+	// do something on spectrogram
+
+	reconstructed := s.ISTFT(spectrogram)
+
+	for i := range data {
+		// expect to be same
+		fmt.Println(data[i], reconstructed[i])
+	}
+}
 ~~~
 
 Fun with speech signal processing!
