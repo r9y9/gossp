@@ -7,6 +7,7 @@ GOSSP is a Speech Signal Processing library for the Go language, which includes 
 
 - **cwt** - Continuous Wavelet Tranform (CWT) and inverse CWT (in develop).
 - **[dct](http://godoc.org/github.com/r9y9/gossp/dct)** -  Discrete Cosine Transform (DCT) and Inverse DCT.
+- **[dtw](http://godoc.org/github.com/r9y9/gossp/dtw)** -  Dynamic Time Warping (DTW)
 - **[excite](http://godoc.org/github.com/r9y9/gossp/excite)** -  Excitation generation from fundamental frequency.
 - **[f0](http://godoc.org/github.com/r9y9/gossp/f0)** -  Fundamental frequency (f0) estimatnion.
 - **[io](http://godoc.org/github.com/r9y9/gossp/io)** -  Input/Output (in develop).
