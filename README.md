@@ -81,7 +81,6 @@ func PrintMatrixAsGnuplotFormat(matrix [][]float64) {
 ~~~
 
 ### Waveform Reconstruction using Inverse Short-Time Fourier Transform
-![](http://r9y9.github.io/images/gossp_waveform.png)
 
 ~~~ go
 package main
