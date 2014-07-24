@@ -39,14 +39,14 @@ func (s *STFT) DivideFrames(input []float64) [][]float64 {
 	numFrames := s.NumFrames(input)
 	frames := make([][]float64, numFrames)
 	for i := 0; i < numFrames; i++ {
-		frames[i] = s.FrameAtIndex(input, i)
+		frames[i] = s.FrameAt(input, i)
 	}
 	return frames
 }
 
-// FrameAtIndex returns frame at specified index given an input signal.
+// FrameAt returns frame at specified index given an input signal.
 // Note that it doesn't make copy of input.
-func (s *STFT) FrameAtIndex(input []float64, index int) []float64 {
+func (s *STFT) FrameAt(input []float64, index int) []float64 {
 	return input[index*s.FrameShift : index*s.FrameShift+s.FrameLen]
 }
 
