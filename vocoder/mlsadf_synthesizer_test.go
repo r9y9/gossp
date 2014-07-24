@@ -42,7 +42,7 @@ func TestMLSASynthesis(t *testing.T) {
 	numFrames := s.NumFrames(testData)
 	mc = make([][]float64, numFrames)
 	for i := 0; i < numFrames; i++ {
-		windowed := window.BlackmanNormalized(s.FrameAtIndex(testData, i))
+		windowed := window.BlackmanNormalized(s.FrameAt(testData, i))
 		mc[i] = mgcep.MCep(windowed, order, alpha)
 	}
 

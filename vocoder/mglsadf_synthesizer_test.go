@@ -43,7 +43,7 @@ func TestMGLSASynthesis(t *testing.T) {
 	numFrames := s.NumFrames(testData)
 	mgc = make([][]float64, numFrames)
 	for i := 0; i < numFrames; i++ {
-		windowed := window.BlackmanNormalized(s.FrameAtIndex(testData, i))
+		windowed := window.BlackmanNormalized(s.FrameAt(testData, i))
 		mgc[i] = mgcep.MGCep(windowed, order, alpha, gamma)
 	}
 
