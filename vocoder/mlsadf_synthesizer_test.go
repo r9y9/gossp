@@ -1,11 +1,11 @@
 package vocoder
 
 import (
+	"github.com/r9y9/gossp"
 	"github.com/r9y9/gossp/excite"
 	"github.com/r9y9/gossp/f0"
 	"github.com/r9y9/gossp/io"
 	"github.com/r9y9/gossp/mgcep"
-	"github.com/r9y9/gossp/stft"
 	"github.com/r9y9/gossp/window"
 	"log"
 	"math"
@@ -34,16 +34,11 @@ func TestMLSASynthesis(t *testing.T) {
 	// F0
 	f0Seq = f0.SWIPE(testData, 16000, frameShift, 60.0, 700.0)
 
-	// Mcep
-	s := &stft.STFT{
-		FrameShift: frameShift,
-		FrameLen:   frameLen}
-
-	numFrames := s.NumFrames(testData)
-	mc = make([][]float64, numFrames)
-	for i := 0; i < numFrames; i++ {
-		windowed := window.BlackmanNormalized(s.FrameAt(testData, i))
-		mc[i] = mgcep.MCep(windowed, order, alpha)
+	// MCep
+	frames := gossp.DivideFrames(testData, frameLen, frameShift)
+	mc = make([][]float64, len(frames))
+	for i, frame := range frames {
+		mc[i] = mgcep.MCep(window.BlackmanNormalized(frame), order, alpha)
 	}
 
 	// adjast number of frames
