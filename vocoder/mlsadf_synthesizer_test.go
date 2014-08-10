@@ -55,10 +55,7 @@ func TestMLSASynthesis(t *testing.T) {
 	// Waveform generation
 	synth := NewMLSASpeechSynthesizer(order, alpha, pd, frameShift)
 
-	_, err = synth.Synthesis(ex, mc)
-	if err != nil {
-		t.Errorf("Error %s, want non-nil.", err)
-	}
+	_ = synth.Synthesis(ex, mc)
 	// TODO(ryuichi) valid check
 }
 

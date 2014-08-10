@@ -1,7 +1,6 @@
 package vocoder
 
 import (
-	"errors"
 	"math"
 )
 
@@ -32,11 +31,7 @@ func NewMGLSASpeechSynthesizer(order int, alpha float64, numStage int,
 // Synthesis synthesizes a speech signal from an excitation signal and
 // corresponding mel-ceptrum sequence.
 func (s *MGLSASpeechSynthesizer) Synthesis(excite []float64,
-	mgcepSequence [][]float64) ([]float64, error) {
-	if len(excite) != len(mgcepSequence)*s.FrameShift {
-		return nil, errors.New("MGLSA Speech Synthesis: The length of excitation and mel-generalized cepstrum times frame peroid doesn't match.")
-	}
-
+	mgcepSequence [][]float64) []float64 {
 	// synthesized speech signal will be stored
 	synthesizedSpeech := make([]float64, len(excite))
 
@@ -45,16 +40,22 @@ func (s *MGLSASpeechSynthesizer) Synthesis(excite []float64,
 		if i > 0 {
 			previousMgcep = mgcepSequence[i-1]
 		}
-		// Synthesize a part of speech
+
 		startIndex, endIndex := i*s.FrameShift, (i+1)*s.FrameShift
-		partOfSpeech := s.SynthesisOneFrame(excite[startIndex:endIndex], previousMgcep, currentMgcep)
+		if endIndex >= len(excite) {
+			break
+		}
+
+		// Synthesize a part of speech
+		partOfSpeech := s.SynthesisOneFrame(excite[startIndex:endIndex],
+			previousMgcep, currentMgcep)
 
 		for j, val := range partOfSpeech {
 			synthesizedSpeech[i*s.FrameShift+j] = val
 		}
 	}
 
-	return synthesizedSpeech, nil
+	return synthesizedSpeech
 }
 
 // SynthesisOneFrame synthesizes a part of speech signal from an excitation signal
@@ -70,7 +71,8 @@ func (s *MGLSASpeechSynthesizer) SynthesisOneFrame(excite []float64,
 	// Compute slope
 	slope := make([]float64, len(currentMgcep))
 	for i := 0; i < len(slope); i++ {
-		slope[i] = (currentFilterCoef[i] - previousFilterCoef[i]) / float64(len(excite))
+		slope[i] = (currentFilterCoef[i] - previousFilterCoef[i]) /
+			float64(len(excite))
 	}
 
 	partOfSpeech := make([]float64, len(excite))
@@ -80,7 +82,8 @@ func (s *MGLSASpeechSynthesizer) SynthesisOneFrame(excite []float64,
 		// Multyply power coeffcient
 		scaledExcitation := excite[i] * math.Exp(linearlyInterpolatedCoef[0])
 		// Filtering
-		partOfSpeech[i] = s.coreFilter.Filter(scaledExcitation, linearlyInterpolatedCoef)
+		partOfSpeech[i] = s.coreFilter.Filter(scaledExcitation,
+			linearlyInterpolatedCoef)
 		// Linear interpolation of filter coefficients
 		for j := 0; j < len(slope); j++ {
 			linearlyInterpolatedCoef[j] += slope[j]
