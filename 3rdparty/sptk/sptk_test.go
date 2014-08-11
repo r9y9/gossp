@@ -53,8 +53,33 @@ func TestMGCep(t *testing.T) {
 }
 
 func TestMFCC(t *testing.T) {
-	MFCC(dummyInput, sampleRate,
-		0.97, 1.0, bufferSize, bufferSize, 12, 20, 22, false, true)
+	c1 := MFCC(dummyInput, sampleRate,
+		0.97, 1.0, bufferSize, bufferSize, 12, 20, 22,
+		false, true, false, false)
+	if len(c1) != 12 {
+		t.Errorf("length mismatch")
+	}
+
+	c2 := MFCC(dummyInput, sampleRate,
+		0.97, 1.0, bufferSize, bufferSize, 12, 20, 22,
+		false, true, true, false)
+	if len(c2) != 13 {
+		t.Errorf("length mismatch")
+	}
+
+	c3 := MFCC(dummyInput, sampleRate,
+		0.97, 1.0, bufferSize, bufferSize, 12, 20, 22,
+		false, true, false, true)
+	if len(c3) != 13 {
+		t.Errorf("length mismatch")
+	}
+
+	c4 := MFCC(dummyInput, sampleRate,
+		0.97, 1.0, bufferSize, bufferSize, 12, 20, 22,
+		false, true, true, true)
+	if len(c4) != 14 {
+		t.Errorf("length mismatch")
+	}
 }
 
 func createSin(freq float64, sampleRate, length int) []float64 {

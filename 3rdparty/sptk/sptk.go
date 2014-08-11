@@ -24,7 +24,8 @@ func ACep(audioSample float64, m int, lambda, step, tau float64, pd int,
 }
 
 func MFCC(audioBuffer []float64, sampleRate int, alpha, eps float64,
-	wlng, flng, m, n, ceplift int, dftmode, usehamming bool) []float64 {
+	wlng, flng, m, n, ceplift int,
+	dftmode, usehamming, czero, power bool) []float64 {
 	// Convert go bool to C.Boolean
 	var dftmodeInGo, usehammingInGo C.Boolean
 	if dftmode {
@@ -38,7 +39,8 @@ func MFCC(audioBuffer []float64, sampleRate int, alpha, eps float64,
 		usehammingInGo = 0
 	}
 
-	resultBuffer := make([]float64, m)
+	// order of MFCC + 0-th + power
+	resultBuffer := make([]float64, m+2)
 
 	C.mfcc(
 		(*C.double)(&audioBuffer[0]),
@@ -48,11 +50,25 @@ func MFCC(audioBuffer []float64, sampleRate int, alpha, eps float64,
 		C.double(eps),
 		C.int(wlng),
 		C.int(flng),
-		C.int(m),
+		C.int(m+1),
 		C.int(n),
 		C.int(ceplift),
 		dftmodeInGo,
 		usehammingInGo)
+
+	// after ccall we get
+	// mfcc[0], mfcc[1], mfcc[2], ... mfcc[m-1], E(C0), Power
+
+	if !czero && power {
+		resultBuffer[m] = resultBuffer[m+1]
+	}
+
+	if !power {
+		resultBuffer = resultBuffer[:len(resultBuffer)-1]
+	}
+	if !czero {
+		resultBuffer = resultBuffer[:len(resultBuffer)-1]
+	}
 
 	return resultBuffer
 }
