@@ -11,7 +11,7 @@ GOSSP is a Speech Signal Processing library for the Go language, which includes 
 - **[excite](http://godoc.org/github.com/r9y9/gossp/excite)** -  Excitation generation from fundamental frequency.
 - **[f0](http://godoc.org/github.com/r9y9/gossp/f0)** -  Fundamental frequency (f0) estimatnion.
 - **[io](http://godoc.org/github.com/r9y9/gossp/io)** -  Input/Output (in develop).
-- **[mgcep](http://godoc.org/github.com/r9y9/gossp/io)** - Mel-generalized cepstrum analysis for spectral envelope estimation.
+- **[mgcep](http://godoc.org/github.com/r9y9/gossp/mgcep)** - Mel-generalized cepstrum analysis for spectral envelope estimation.
 - **[special](http://godoc.org/github.com/r9y9/gossp/special)** - Special functions analogy to scipy in python.
 - **[stft](http://godoc.org/github.com/r9y9/gossp/stft)** - Short-Time Fourier Transform (STFT) and Inverse STFT.
 - **[vocoder](http://godoc.org/github.com/r9y9/gossp/vocoder)** -  Speech waveform generation filters.
