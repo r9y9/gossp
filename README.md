@@ -134,7 +134,3 @@ Fun with speech signal processing!
 ## LICENSE
 
 [MIT](./LICENSE)
-
-## Author
-
-[Ryuichi YAMAMOTO](https://github.com/r9y9)
