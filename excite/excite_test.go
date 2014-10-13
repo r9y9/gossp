@@ -6,7 +6,7 @@ import (
 )
 
 func TestLength(t *testing.T) {
-	// setupo
+	// setup
 	sampleRate := 44100
 	frameShift := 441
 	ex := &PulseExcite{
