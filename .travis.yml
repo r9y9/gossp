@@ -24,7 +24,7 @@ install:
   - go get ./...
 
 script:
-    - ./test.sh
+    - ./unittest.sh
 
 after_success:
     - goveralls -coverprofile=.profile.cov
