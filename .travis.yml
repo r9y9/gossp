@@ -24,4 +24,7 @@ install:
   - go get ./...
 
 script:
-    - $HOME/gopath/bin/goveralls -service=travis-ci
+    - ./test.sh
+
+after_success:
+    - goveralls -coverprofile=.profile.cov
