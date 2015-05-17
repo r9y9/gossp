@@ -40,7 +40,7 @@ sudo ./waf install
 ## Getting Started
 
 ### Short-Time Fourier Transform
-![](http://r9y9.github.io/images/gossp_stft.png)
+![](examples/spectrogram.png)
 
 ```go
 package main
@@ -88,6 +88,8 @@ func PrintMatrixAsGnuplotFormat(matrix [][]float64) {
 ```
 
 ### Waveform Reconstruction using Inverse Short-Time Fourier Transform
+
+![](examples/reconstructed_signal.png)
 
 ```go
 package main
