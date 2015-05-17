@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/r9y9/gossp.png?branch=master)](https://travis-ci.org/r9y9/gossp)
 [![Coverage Status](https://coveralls.io/repos/r9y9/gossp/badge.svg?branch=master)](https://coveralls.io/r/r9y9/gossp?branch=master)
+[![GoDoc](https://godoc.org/github.com/r9y9/gossp?status.svg)](https://godoc.org/github.com/r9y9/gossp)
 
 GOSSP is a Speech Signal Processing library for the Go language, which includes time-frequency analysis, fundamental frequency estimation, spectral envelope estimation and waveform generation filters, etc.
 
@@ -20,24 +21,28 @@ GOSSP is a Speech Signal Processing library for the Go language, which includes 
 - **[window](http://godoc.org/github.com/r9y9/gossp/window)** -  Window functions.
 - **[z](http://godoc.org/github.com/r9y9/gossp/z)** - Z-transform to analyze digital filters.
 
-## Install
+## Installation
 
-     go get github.com/r9y9/gossp
+```bash
+go get github.com/r9y9/gossp
+```
 
 ### Install SPTK
 
 To use [SPTK](http://sp-tk.sourceforge.net/) with GOSSP, you need to install the modified version of SPTK as follows:
 
-     git clone https://github.com/r9y9/SPTK.git && cd SPTK
-     ./waf configure && ./waf
-     sudo ./waf install
+```bash
+git clone https://github.com/r9y9/SPTK.git && cd SPTK
+./waf configure && ./waf
+sudo ./waf install
+```
 
 ## Getting Started
 
 ### Short-Time Fourier Transform
 ![](http://r9y9.github.io/images/gossp_stft.png)
 
-~~~ go
+```go
 package main
 
 import (
@@ -80,11 +85,11 @@ func PrintMatrixAsGnuplotFormat(matrix [][]float64) {
 		fmt.Println("")
 	}
 }
-~~~
+```
 
 ### Waveform Reconstruction using Inverse Short-Time Fourier Transform
 
-~~~ go
+```go
 package main
 
 import (
@@ -123,7 +128,7 @@ func main() {
 		fmt.Println(data[i], reconstructed[i])
 	}
 }
-~~~
+```
 
 Fun with speech signal processing!
 
