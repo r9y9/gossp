@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/r9y9/gossp.png?branch=master)](https://travis-ci.org/r9y9/gossp)
 [![Coverage Status](https://coveralls.io/repos/r9y9/gossp/badge.svg?branch=master)](https://coveralls.io/r/r9y9/gossp?branch=master)
 [![GoDoc](https://godoc.org/github.com/r9y9/gossp?status.svg)](https://godoc.org/github.com/r9y9/gossp)
+[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE.md)
+
 
 GOSSP is a Speech Signal Processing library for the Go language, which includes time-frequency analysis, fundamental frequency estimation, spectral envelope estimation and waveform generation filters, etc.
 
